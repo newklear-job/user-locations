@@ -1,0 +1,95 @@
+/user-locations:
+  get:
+    tags:
+      - User Locations
+    summary: Show users who was near given location in given time range
+    description: User locations index
+    parameters:
+      - in: query
+        name: latitude
+        schema:
+          type: number
+          format: double
+        required: true
+        description: Latitude coordinate
+        example: 1.1
+
+      - in: query
+        name: longitude
+        schema:
+          type: number
+          format: double
+        required: true
+        description: Longitude coordinate
+        example: 1.2
+
+      - in: query
+        name: radius
+        schema:
+          type: number
+          format: double
+        required: true
+        description: Radius
+        example: 500
+
+      - in: query
+        name: unit
+        schema:
+          type: string
+        required: true
+        description: Unit in which you gave radius. Suppoted values - m, km, mi
+        example: m
+
+      - in: query
+        name: startDate
+        schema:
+          type: string
+          format: date-time
+        required: true
+        description: Start Date
+        example: 2020-04-04T16:23:25
+
+      - in: query
+        name: endDate
+        schema:
+          type: string
+          format: date-time
+        required: true
+        description: End Date
+        example: 2022-04-04T16:23:25
+
+    responses:
+      200:
+        description: Get all users who were in given radius in gived time range.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/schemas/User'
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+
+  post:
+    tags:
+      - User Locations
+    summary: Add new user location.
+    description: Create new user location.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/definitions/schemas/UserLocationData"
+              - type: object
+    responses:
+      201:
+        description: Newly created user location.
+        content:
+          application/json:
+            schema:
+              $ref: "#/definitions/schemas/UserLocation"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+

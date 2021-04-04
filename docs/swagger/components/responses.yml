@@ -1,0 +1,51 @@
+components:
+  responses:
+    UnprocessableEntity:
+      description: Validation errors.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                description: Array with validation errors
+                items:
+                  type: object
+                  properties:
+                    rule:
+                      tyle: string
+                      description: Rule name
+                      example: required
+                    field:
+                      tyle: string
+                      description: Field name
+                      example: email
+                    message:
+                      tyle: string
+                      description: Description of error
+                      example: required validation failed
+
+    NotFound:
+      description: Access token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                tyle: string
+                description: Error message
+                example: "E_ROUTE_NOT_FOUND: Cannot GET:/v1/user32s"
+              stack:
+                tyle: string
+                description: Stack trace
+                example: "HttpException: E_ROUTE_NOT_FOUND: Cannot GET:/v1/user......"
+              code:
+                tyle: string
+                description: Error message
+                example: "E_ROUTE_NOT_FOUND"
+
+    BadRequest:
+      description: Bad request sent to server.
+      example: Highly depends on error.

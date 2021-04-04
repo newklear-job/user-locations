@@ -29,6 +29,6 @@ Route.get('health', async ({ response }) => {
     : response.badRequest(report)
 })
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.resource('users', 'UsersController').except(['create', 'edit'])
+
+Route.resource('user-locations', 'UserLocationsController').only(['index', 'store'])

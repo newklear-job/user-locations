@@ -1,0 +1,39 @@
+definitions:
+  schemas:
+    UserLocationData:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          description: User id.
+          example: 1
+        latitude:
+          type: decimal
+          description: Latitude coordinate.
+          example: 1.1
+        longitude:
+          type: decimal
+          description: Longitude coordinate.
+          example: 1.2
+      required:
+        - user_id
+        - longitude
+        - latitude
+
+    UserLocation:
+      allOf:
+        - $ref: "#/definitions/schemas/UserLocationData"
+        - type: object
+        - properties:
+            id:
+              type: integer
+              description: Record id.
+              example: 1
+            created_at:
+              type: string
+              description: Datetime when record was created.
+              example: 2020-12-21T21:30:06.659+00:00
+            updated_at:
+              type: string
+              description: Datetime when record was updated.
+              example: 2020-12-21T21:30:06.659+00:00

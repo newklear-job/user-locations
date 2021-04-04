@@ -1,0 +1,39 @@
+definitions:
+  schemas:
+    UserData:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: The user first name.
+          example: firstName
+        last_name:
+          type: string
+          description: The user last name.
+          example: lastName
+        status:
+          type: boolean
+          description: User's status.
+          example: true
+      required:
+        - first_name
+        - last_name
+        - status
+
+    User:
+      allOf:
+        - $ref: "#/definitions/schemas/UserData"
+        - type: object
+        - properties:
+            id:
+              type: integer
+              description: Record id.
+              example: 1
+            created_at:
+              type: string
+              description: Datetime when record was created.
+              example: 2020-12-21T21:30:06.659+00:00
+            updated_at:
+              type: string
+              description: Datetime when record was updated.
+              example: 2020-12-21T21:30:06.659+00:00
